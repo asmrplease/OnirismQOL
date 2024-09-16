@@ -18,7 +18,7 @@ public class QOLPlugin : BaseUnityPlugin
     void Awake()
     {
         Instance = this;
-        ConfigDescription idk = new(
+        var configDescription = new ConfigDescription(
             "Camera zoom value", 
             new AcceptableValueRange<float>(1.0f, 5.0f), 
             null);
@@ -26,7 +26,7 @@ public class QOLPlugin : BaseUnityPlugin
             "Settings",
             "zoom",
             2.0f,
-            idk);
+            configDescription);
         
         harmony = new("QOLHarmony");
         harmony.PatchAll();

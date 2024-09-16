@@ -33,6 +33,7 @@ public static class CarolControllerPatch
                 SprintInputDown = __instance.sprintInputDown,
                 SneakInputDown = __instance.sprintInputDown,
             };
+            //Harmony passes __state variables between Prefix and Postfix
         }
 
         [HarmonyPostfix()]
@@ -48,6 +49,11 @@ public static class CarolControllerPatch
             __instance.jumpInputDown |= __state.JumpInputDown;
             __instance.sprintInputDown |= __state.SprintInputDown;
             __instance.sneakInputDown |= __state.SneakInputDown;
+            //Note to the devs:
+            //To fix this problem directly,
+            //OR the values read in CarolController.Update() with the previous frame's values
+            //Then set them to false at the end of CarolController.FixedUpdate()
+            //this.diveInputDown |= InputManager.manager.GetInputDown(this.playerNumber, InputManager.InputType.Dive);
         }
     }
 
